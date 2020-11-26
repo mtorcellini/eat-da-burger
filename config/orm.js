@@ -12,7 +12,8 @@ function objToSql(obj) {
     return arr.toString();
 };
 
-functon printQs(num) {
+// Add string of ?s to parameterize queries
+function printQs(num) {
     let arr = [];
     for (let i=0; i<num; i++) {
         arr.push("?");
@@ -38,5 +39,8 @@ const orm = {
             cb(result);
         });
     },
-    
+
 }
+
+
+module.exports = orm;
