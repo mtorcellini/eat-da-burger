@@ -9,7 +9,7 @@ const burger = {
 
     create(cols, vals, cb) {
         orm.insertOne("burgers", cols, vals, (result) => {
-            cb(res);
+            cb(result);
         });
     },
 

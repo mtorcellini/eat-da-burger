@@ -6,7 +6,7 @@ const burger = require("../models/burger");
 // Get all the burgers
 router.get("/", (req, res, next) => {
     burger.all((data) => {
-        console.log("Burger controller got this data: ", data);
+        // console.log("Burger controller got this data: ", data);
         res.render("index", {
             burgersToRender : data
         })
@@ -16,7 +16,13 @@ router.get("/", (req, res, next) => {
 
 // Create a new burger
 router.post("/api/burgers", (req, res, next) => {
-    burger.create()
+    console.log(req.body);
+    burger.create("name", [req.body.burgerName], (data) => {
+        res.render("index", {
+            burgersToRender : data
+        })
+    });
+    
 });
 
 
