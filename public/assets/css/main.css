@@ -85,3 +85,9 @@ button.submit {
         width: 45%;
     }
 }
+
+@media(min-width: 1200px) {
+    .fresh ul {
+        width: 30%;
+    }
+}
