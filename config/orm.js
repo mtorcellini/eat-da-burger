@@ -4,10 +4,10 @@ const connection = require("./connection");
 function objToSql(obj) {
     let arr = [];
     for (let key in obj) {
-        let value = ob[key];
+        let value = obj[key];
         // Add double quotes to value
         value = "\"" + value + "\"";
-        arr.push(`${key} = value`);
+        arr.push(`${key} = ${value}`);
     }
     return arr.toString();
 };
@@ -39,6 +39,15 @@ const orm = {
             cb(result);
         });
     },
+
+    updateOne(table, objColVals, condition, cb) {
+        const query = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition};`;
+        console.log("updateOne: " + query);
+        connection.query(query, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        })
+    }
 
 }
 

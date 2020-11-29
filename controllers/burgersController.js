@@ -18,16 +18,22 @@ router.get("/", (req, res, next) => {
 router.post("/api/burgers", (req, res, next) => {
     console.log(req.body);
     burger.create("name", [req.body.burgerName], (data) => {
-        res.render("index", {
-            burgersToRender : data
-        })
-    });
-    
+        //console.log(data);
+        res.status(201).send();
+    })
 });
 
 
 // Update the state of a burger
 router.put("/api/burgers/:id", (req, res, next) => {
+    const condition = "id = " + req.params.id;
+    const objColVals = {
+        devoured : 1
+    };
+    burger.update(objColVals, condition, (data) => {
+        console.log(data);
+        res.status(200).send();
+    });
 
 });
 

@@ -5,7 +5,15 @@ $(document).ready(function() {
     $(".devour").on("click", function(event) {
         const idToDevour = $(this).data("id");
         console.log("idToDevour : " + idToDevour);
-    })
+
+        // make API request
+        $.ajax({
+            url : "/api/burgers/" + idToDevour,
+            method : "PUT"
+        }).then( (response) => {
+            location.reload();
+        });
+    });
 
     // submit button
     $(".submit").on("click", function(event) {
